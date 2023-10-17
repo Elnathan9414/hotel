@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChamnreController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmailnotificationController;
 use App\Http\Controllers\EntrepriseController;
@@ -34,3 +35,4 @@ Route::resource('souscription', SouscriptionController::class);
 Route::resource('mail', EmailnotificationController::class);
 Route::resource('facture', FactureController::class);
 Route::resource('entreprise', EntrepriseController::class);
+Route::resource('chambre', ChamnreController::class);

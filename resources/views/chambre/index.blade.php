@@ -6,17 +6,21 @@
 <div class="card">
     <div class="card-header">
          
-    <h1 class="card-title">Services</h1>
+    <h1 class="card-title">Chambres</h1>
     <div class="d-flex justify-content-end">
-        <a href="{{route('service.create')}}" class="btn btn-success"><span class="fa fa-plus-circle"></span> Ajouter</a>
+        <a href="{{route('chambre.create')}}" class="btn btn-success"><span class="fa fa-plus-circle"></span> Ajouter</a>
      </div>
     </div>
    {{-- Setup data for datatables --}}
 @php
 $heads = [
     'ID',
-    'Service',
-    'Description',
+    'N° chambre',
+    'Lits',
+    'Climatisation',
+    'Standard',
+    'prix',
+    'Etat',
     //['label' => 'Email', 'width' => 40],
     ['label' => 'Actions', 'no-export' => true, 'width' => 5],
 ];
@@ -34,15 +38,19 @@ $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" titl
 
 
 $entData  = array();
-foreach ($service as $ser) {
+foreach ($chambre as $cha) {
     # code...
     $entData []= [
-        $ser->id,
-        $ser->nomService,
-        $ser->descriptionService,
+        $cha->id,
+        $cha->numChambre,
+        $cha->nbrelits,
+        $cha->climatisation,
+        $cha->standing,
+        $cha->prixChambre,
+        $cha->Etat,
        
         
-        '<nobr><a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Show" href="'.url("service/{$ser->id}").'"> <i class="fa fa-lg fa-fw fa-eye"></i></a> <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Editer" href="'.url("service/{$ser->id}/edit").'"> <i class="fa fa-lg fa-fw fa-pen"></i></a> <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" href="'.url("service/{$ser->id}").'"> <i class="fa fa-lg fa-fw fa-trash"></i></a></nobr>'
+        '<nobr><a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Show" href="'.url("service/{$cha->id}").'"> <i class="fa fa-lg fa-fw fa-eye"></i></a> <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Editer" href="'.url("chambre/{$cha->id}/edit").'"> <i class="fa fa-lg fa-fw fa-pen"></i></a> <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" href="'.url("chambre/{$cha->id}").'"> <i class="fa fa-lg fa-fw fa-trash"></i></a></nobr>'
        // '<nobr><a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Show" href="'.url("entreprise/{$ent->id}").'"> <i class="fa fa-lg fa-fw fa-eye"></i></a></nobr>'
 
 ];
@@ -51,7 +59,7 @@ foreach ($service as $ser) {
 
 $config = [
     'order' => [[1, 'asc']],
-    'columns' => [null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
 ];
 $config['data'] = $entData;
 @endphp

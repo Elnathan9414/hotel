@@ -48,7 +48,7 @@ class ClientController extends Controller
         $client->contactClient=$request->input('contactClient');
         $client->emailClient=$request->input('emailClient');
         $client->save();
-        return redirect()->route('client.index')->with('info', 'La declaration de decès  a bien été crée');
+        return redirect()->route('client.index')->with('info', 'Opération réuissie');
     }
 
     /**
