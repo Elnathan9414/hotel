@@ -61,7 +61,8 @@ class FactureController extends Controller
      */
     public function edit(facture $facture)
     {
-        //
+        $facture = facture::all();
+        return view('facture.edit', compact('facture'));
     }
 
     /**
@@ -73,7 +74,10 @@ class FactureController extends Controller
      */
     public function update(UpdatefactureRequest $request, facture $facture)
     {
-        //
+        $facture->type = $request->type;
+        $facture->montant = $request->montant;
+        $facture->save();
+        return redirect()->route('facture.index');
     }
 
     /**
@@ -84,6 +88,7 @@ class FactureController extends Controller
      */
     public function destroy(facture $facture)
     {
-        //
+        $facture->delete();
+        return redirect()->route('facture.index');
     }
 }

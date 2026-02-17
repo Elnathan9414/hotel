@@ -42,7 +42,11 @@ class ChamnreController extends Controller
      */
     public function store(StoreChambresRequest $request)
     {
-        //
+        $chambre = new Chambres();
+        $chambre->type_chambre = $request->type_chambre;
+        $chambre->prix = $request->prix;
+        $chambre->save();
+        return redirect()->route('chambre.index');
     }
 
     /**
@@ -53,7 +57,7 @@ class ChamnreController extends Controller
      */
     public function show(Chambres $chambres)
     {
-        //
+        return view('chambre.show', compact('chambres'));
     }
 
     /**
@@ -64,7 +68,7 @@ class ChamnreController extends Controller
      */
     public function edit(Chambres $chambres)
     {
-        //
+        return view('chambre.edit', compact('chambres'));
     }
 
     /**
@@ -76,7 +80,10 @@ class ChamnreController extends Controller
      */
     public function update(UpdateChambresRequest $request, Chambres $chambres)
     {
-        //
+        $chambres->type_chambre = $request->type_chambre;
+        $chambres->prix = $request->prix;
+        $chambres->save();
+        return redirect()->route('chambre.index');
     }
 
     /**
@@ -87,6 +94,7 @@ class ChamnreController extends Controller
      */
     public function destroy(Chambres $chambres)
     {
-        //
+        $chambres->delete();
+        return redirect()->route('chambre.index');
     }
 }
