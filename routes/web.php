@@ -29,6 +29,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::view('/fonctionnalites', 'features')->name('features');
+Route::view('/tarifs', 'pricing')->name('pricing');
+Route::view('/contact', 'contact')->name('contact');
+
 Route::resource('client', ClientController::class);
 Route::resource('service', ServiceController::class);
 Route::resource('souscription', SouscriptionController::class);
@@ -36,3 +40,4 @@ Route::resource('mail', EmailnotificationController::class);
 Route::resource('facture', FactureController::class);
 Route::resource('entreprise', EntrepriseController::class);
 Route::resource('chambre', ChamnreController::class);
+

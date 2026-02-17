@@ -21,10 +21,13 @@
         <div class="hidden md:flex items-center space-x-8">
 
             <ul class="flex space-x-8 text-gray-300">
-                <li><a href="#" class="hover:text-yellow-400">Accueil</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Fonctionnalités</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Tarifs</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+                <li><a href="/" class="hover:text-yellow-400">Accueil</a></li>
+              <li>  <a href="{{ route('features') }}" 
+   class="hover:text-yellow-400 transition">
+    Fonctionnalités </a></li>
+               <li><a href="{{ route('pricing') }}" 
+   class="hover:text-yellow-400 transition">Tarifs</a></li>
+                <li><a href="{{ route('contact') }}" class="hover:text-yellow-400">Contact</a></li>
             </ul>
 
             @if (Route::has('login'))
@@ -101,7 +104,7 @@
 </nav>
 
 
-    <!-- HERO SECTION -->
+    
     <!-- HERO SECTION -->
 <section class="relative">
 
@@ -596,6 +599,7 @@
             <h3 class="text-2xl font-bold text-yellow-400 mb-4">
                 HotelFlow
             </h3>
+
             <p class="text-gray-400 mb-6">
                 Solution moderne de gestion hôtelière pour automatiser
                 vos opérations et améliorer votre rentabilité.
@@ -610,34 +614,37 @@
 
         <!-- Produit -->
         <div>
-            <h4 class="font-semibold mb-4">Produit</h4>
+            <h4 class="font-semibold mb-4 text-white">Produit</h4>
+
             <ul class="space-y-3 text-gray-400">
-                <li><a href="#" class="hover:text-yellow-400">Fonctionnalités</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Tarifs</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Démo</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Mises à jour</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Fonctionnalités</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Tarifs</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Démo</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Mises à jour</a></li>
             </ul>
         </div>
 
         <!-- Entreprise -->
         <div>
-            <h4 class="font-semibold mb-4">Entreprise</h4>
+            <h4 class="font-semibold mb-4 text-white">Entreprise</h4>
+
             <ul class="space-y-3 text-gray-400">
-                <li><a href="#" class="hover:text-yellow-400">À propos</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Carrières</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Blog</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">À propos</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Carrières</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Blog</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Contact</a></li>
             </ul>
         </div>
 
         <!-- Support -->
         <div>
-            <h4 class="font-semibold mb-4">Support</h4>
+            <h4 class="font-semibold mb-4 text-white">Support</h4>
+
             <ul class="space-y-3 text-gray-400">
-                <li><a href="#" class="hover:text-yellow-400">Centre d’aide</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Documentation</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Politique de confidentialité</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Conditions d’utilisation</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Centre d’aide</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Documentation</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Politique de confidentialité</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition">Conditions d’utilisation</a></li>
             </ul>
         </div>
 
