@@ -8,7 +8,12 @@ use App\Http\Controllers\FactureController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SouscriptionController;
-use App\Models\souscription;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\HotelController;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,4 +45,20 @@ Route::resource('mail', EmailnotificationController::class);
 Route::resource('facture', FactureController::class);
 Route::resource('entreprise', EntrepriseController::class);
 Route::resource('chambre', ChamnreController::class);
+Route::middleware(['auth'])->group(function () {
+Route::resource('reservations', ReservationController::class);
 
+});
+Route::middleware(['auth'])->group(function () {
+Route::resource('rooms', RoomController::class);
+
+
+});
+Route::middleware(['auth'])->group(function () {
+Route::resource('client', ClientController::class);
+
+
+});
+Route::middleware(['auth'])->group(function () {
+Route::resource('hotels', HotelController::class);
+});

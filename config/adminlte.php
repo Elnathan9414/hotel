@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => ' Notifications',
+    'title' => ' Hottelflow',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Notifications</b>APP',
+    'logo' => '<b>Hotel</b>Flow',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -326,20 +326,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Services',
-            'url'  => '/service',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'Souscriptions',
-            'url'  => '/souscription',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'Chambres',
-            'url'  => '/chambre',
+            'text' => 'chambres',
+            'url'  => '/rooms',
             'icon' => 'fas fa-fw fa-bed',
         ],
+       
+       
         [
             'text'    => 'Hôtel',
             'icon'    => 'fas fa-fw fa-bell',

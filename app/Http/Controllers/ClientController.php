@@ -2,100 +2,90 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\client;
-use App\Http\Requests\StoreclientRequest;
-use App\Http\Requests\UpdateclientRequest;
-use Illuminate\Support\Facades\DB;
+use App\Models\Client;
+use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 
 class ClientController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Affiche la liste des clients
      */
     public function index()
     {
-        //$client = DB::table('clients')->simplePaginate(5);
-        $client = DB::table('clients')->orderBy('id')->simplePaginate(10);
-       // $client = client::all();
-         return view('client.index', compact('client'));
-       
+        $clients = Client::orderBy('last_name')->get();
+         $stats = [
+        'total' => Client::count(),
+        'this_month' => Client::whereMonth('created_at', now()->month)->count(),
+        'today' =>Client::whereDay('created_at', now()->day)->count(), 
+    ];
+
+
+        return view('clients.index', compact('clients', 'stats'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Formulaire de création
      */
     public function create()
     {
-        $client = client::all();
-        return view('client.create', compact('client'));
+        return view('clients.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreclientRequest  $request
-     * @return \Illuminate\Http\Response
+     * Enregistre un nouveau client
      */
-    public function store(StoreclientRequest $request)
+    public function store(StoreClientRequest $request)
     {
-        $client= new client();
-        $client->nomClient=$request->input('nomClient');
-        $client->prenomClient=$request->input('prenomClient');
-        $client->contactClient=$request->input('contactClient');
-        $client->emailClient=$request->input('emailClient');
-        $client->save();
-        return redirect()->route('client.index')->with('info', 'Opération réuissie');
+        $data = $request->validated();
+
+    $data['hotel_id'] = auth()->user()->hotel_id;
+
+    Client::create($data);
+
+    return redirect()
+        ->route('client.index')
+        ->with('success', 'Client ajouté avec succès');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\client  $client
-     * @return \Illuminate\Http\Response
+     * Affiche un client
      */
-    public function show(client $client)
+    public function show(Client $client)
     {
-        return view('client.show', compact('client'));
+        return view('clients.show', compact('client'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\client  $client
-     * @return \Illuminate\Http\Response
+     * Formulaire d’édition
      */
-    public function edit(client $client)
+    public function edit(Client $client)
     {
-        return view('client.edit', compact('client'));
+        return view('clients.edit', compact('client'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateclientRequest  $request
-     * @param  \App\Models\client  $client
-     * @return \Illuminate\Http\Response
+     * Met à jour un client
      */
-    public function update(UpdateclientRequest $request, client $client)
+    public function update(UpdateClientRequest $request, Client $client)
     {
-        $client->update($request->all());
-        return redirect()->route('client.index')->with('info', 'La déclaration a bien été modifié');
+        $client->update($request->validated());
+        
+
+        return redirect()
+            ->route('client.index')
+            ->with('success', 'Client mis à jour avec succès');
     }
-    
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\client  $client
-     * @return \Illuminate\Http\Response
+     * Supprime un client
      */
-    public function destroy(client $client)
+    public function destroy(Client $client)
     {
         $client->delete();
-        return back()->with('info', ' supprimé dans la base de données.');
+
+        return redirect()
+            ->route('client.index')
+            ->with('success', 'Client supprimé avec succès');
     }
 }

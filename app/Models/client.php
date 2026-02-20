@@ -2,26 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class client extends Model
+class Client extends Model
 {
     use HasFactory;
 
-    
-
-     public function souscription()
-     {
-        // return $this->belongsTo(souscription::class , 'clientsouscrit');
-        return $this->belongsTo(App\Models\client::class, "clientsouscrit");
-     }
-
     protected $fillable = [
-        "nomClient",
-        'prenomClient',
-        'contactClient',
-        'emailClient',
-
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'notes',
     ];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 }
